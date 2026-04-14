@@ -1,70 +1,184 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
+
+/* 🌈 Background */
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f4e4ba;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
 }
+
+/* 🧊 Card */
 .container {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 1rem;
-  min-height: 45vh;
-  width: 40vh;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(20px);
+  padding: 2.5rem 2rem;
+  border-radius: 1.8rem;
+  width: 320px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  color: #fff;
+  animation: float 6s ease-in-out infinite;
+  transition: 0.3s ease;
 }
+
+.container:hover {
+  transform: translateY(-5px);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Heading */
+.container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  font-size: 1.6rem;
+}
+
+/* Form spacing */
 form {
-  margin: 2rem 0 1rem 0;
+  margin: 1.5rem 0;
 }
+
+/* Shared inputs */
 form select,
 button,
 input {
   width: 100%;
-  border: none;
-  outline: none;
   border-radius: 0.75rem;
+  outline: none;
 }
+
+/* ✏️ Input */
 form input {
-  border: 1px solid lightgray;
-  font-size: 1rem;
   height: 3rem;
-  padding-left: 0.5rem;
+  padding: 0 1rem;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: 0.3s;
+  font-size: 1rem;
 }
+
+form input::placeholder {
+  color: #ccc;
+}
+
+form input:focus {
+  border-color: #00d4ff;
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.6);
+}
+
+/* 🔽 Dropdown layout */
 .dropdown {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  margin-top: 2rem;
+  gap: 0.8rem;
+  margin: 2rem 0;
 }
+
+/* 🔁 Swap icon */
 .dropdown i {
-  font-size: 1.5rem;
-  margin-top: 1rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: 0.4s;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 0.6rem;
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
 }
-.select-container img {
-  max-width: 2rem;
+
+.dropdown i:hover {
+  transform: rotate(180deg) scale(1.15);
+  color: #00d4ff;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
 }
+
+select {
+  appearance: none;
+}
+
+/* 🌍 Select container */
 .select-container {
+  position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 6rem;
-  border-radius: 0.5rem;
-  border: 1px solid lightgray;
+  gap: 0.4rem;
+  width: 100%;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.4rem 0.8rem;
+  transition: 0.3s;
 }
+
+.select-container:hover {
+  border-color: rgba(0, 212, 255, 0.6);
+}
+
+/* Flag */
+.select-container img {
+  width: 1.6rem;
+}
+
+/* SELECT */
 .select-container select {
-  font-size: 1rem;
-  width: auto;
+  background: transparent;
+  color: #fff;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  width: 100%;
 }
+
+/* Dropdown options fix */
+select option {
+  color: #000;
+  background-color: #fff;
+}
+
+/* 💬 Result */
 .msg {
-  margin: 2rem 0 2rem 0;
+  margin: 1.8rem 0;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: #eafcff;
+  line-height: 1.5;
 }
+
+/* 🚀 Button */
 form button {
   height: 3rem;
-  background-color: #af4d98;
+  background: linear-gradient(135deg, #00d4ff, #0072ff);
   color: #fff;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   cursor: pointer;
+  border: none;
+  border-radius: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 25px rgba(0, 114, 255, 0.4);
+}
+
+form button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(0, 114, 255, 0.6);
+}
+
+form button:active {
+  transform: scale(0.96);
 }
