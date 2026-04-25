@@ -1,184 +1,459 @@
-* {
+/* ============================================================
+   Currency Converter — style.css
+   Emerald & Gold theme with Aurora blob background
+   ============================================================ */
+
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
 }
 
-/* 🌈 Background */
+/* ── Animations ───────────────────────────────────────────── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blobFloat1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(40px, -50px) scale(1.07);
+  }
+  66% {
+    transform: translate(-30px, 30px) scale(0.95);
+  }
+}
+
+@keyframes blobFloat2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-50px, 40px) scale(1.05);
+  }
+  66% {
+    transform: translate(30px, -30px) scale(0.97);
+  }
+}
+
+@keyframes blobFloat3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, 40px) scale(1.08);
+  }
+}
+
+@keyframes iconSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(52, 211, 153, 0);
+  }
+}
+
+@keyframes resultPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(8px);
+  }
+  70% {
+    transform: scale(1.03) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes swapSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+/* ── Body ─────────────────────────────────────────────────── */
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-}
-
-/* 🧊 Card */
-.container {
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(20px);
-  padding: 2.5rem 2rem;
-  border-radius: 1.8rem;
-  width: 320px;
-  box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.5),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-  color: #fff;
-  animation: float 6s ease-in-out infinite;
-  transition: 0.3s ease;
-}
-
-.container:hover {
-  transform: translateY(-5px);
-}
-
-/* Floating animation */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-/* Heading */
-.container h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
-  letter-spacing: 0.6px;
-  font-size: 1.6rem;
-}
-
-/* Form spacing */
-form {
-  margin: 1.5rem 0;
-}
-
-/* Shared inputs */
-form select,
-button,
-input {
-  width: 100%;
-  border-radius: 0.75rem;
-  outline: none;
-}
-
-/* ✏️ Input */
-form input {
-  height: 3rem;
-  padding: 0 1rem;
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: 0.3s;
-  font-size: 1rem;
-}
-
-form input::placeholder {
-  color: #ccc;
-}
-
-form input:focus {
-  border-color: #00d4ff;
-  box-shadow: 0 0 12px rgba(0, 212, 255, 0.6);
-}
-
-/* 🔽 Dropdown layout */
-.dropdown {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.8rem;
-  margin: 2rem 0;
+  justify-content: center;
+  background: #0a1a12;
+  font-family: "Segoe UI", sans-serif;
+  position: relative;
+  overflow: hidden;
 }
 
-/* 🔁 Swap icon */
-.dropdown i {
-  font-size: 1.4rem;
-  cursor: pointer;
-  transition: 0.4s;
-  background: rgba(255, 255, 255, 0.12);
-  padding: 0.6rem;
+/* ── Aurora blobs ─────────────────────────────────────────── */
+.blob {
+  position: fixed;
   border-radius: 50%;
-  backdrop-filter: blur(10px);
+  filter: blur(80px);
+  opacity: 0.45;
+  pointer-events: none;
 }
 
-.dropdown i:hover {
-  transform: rotate(180deg) scale(1.15);
-  color: #00d4ff;
-  box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+.blob1 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, #064e3b, #065f46);
+  top: -100px;
+  left: -100px;
+  animation: blobFloat1 12s ease-in-out infinite;
 }
 
-select {
-  appearance: none;
+.blob2 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, #78350f, #92400e);
+  bottom: -80px;
+  right: -80px;
+  animation: blobFloat2 14s ease-in-out infinite;
 }
 
-/* 🌍 Select container */
-.select-container {
+.blob3 {
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, #14532d, #166534);
+  top: 50%;
+  left: 55%;
+  animation: blobFloat3 10s ease-in-out infinite;
+}
+
+/* ── Page ─────────────────────────────────────────────────── */
+.page {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.card {
+  width: 100%;
+  max-width: 390px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(52, 211, 153, 0.15);
+  border-radius: 28px;
+  padding: 32px 28px 28px;
+  animation: fadeUp 0.65s ease both;
+  box-shadow:
+    0 0 0 1px rgba(52, 211, 153, 0.06),
+    0 28px 64px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.card-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.header-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(52, 211, 153, 0.15),
+    rgba(245, 158, 11, 0.1)
+  );
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+  font-size: 24px;
+  color: #34d399;
+  animation: pulse 2.8s ease-in-out infinite;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ecfdf5;
+  letter-spacing: 0.4px;
+  margin-bottom: 4px;
+  background: linear-gradient(90deg, #34d399, #fbbf24, #34d399);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+.card-sub {
+  font-size: 12px;
+  color: rgba(236, 253, 245, 0.45);
+  letter-spacing: 0.4px;
+}
+
+/* ── Field label ──────────────────────────────────────────── */
+.field-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(52, 211, 153, 0.7);
+  margin-bottom: 8px;
+}
+
+/* ── Amount input ─────────────────────────────────────────── */
+.field-group {
+  margin-bottom: 20px;
+}
+
+.input-wrap {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  font-size: 16px;
+  color: rgba(52, 211, 153, 0.5);
+  pointer-events: none;
+}
+
+.amount-input {
   width: 100%;
-  border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.4rem 0.8rem;
-  transition: 0.3s;
-}
-
-.select-container:hover {
-  border-color: rgba(0, 212, 255, 0.6);
-}
-
-/* Flag */
-.select-container img {
-  width: 1.6rem;
-}
-
-/* SELECT */
-.select-container select {
-  background: transparent;
-  color: #fff;
-  font-size: 0.95rem;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-/* Dropdown options fix */
-select option {
-  color: #000;
-  background-color: #fff;
-}
-
-/* 💬 Result */
-.msg {
-  margin: 1.8rem 0;
-  text-align: center;
-  font-weight: 500;
-  font-size: 1.1rem;
-  color: #eafcff;
-  line-height: 1.5;
-}
-
-/* 🚀 Button */
-form button {
-  height: 3rem;
-  background: linear-gradient(135deg, #00d4ff, #0072ff);
-  color: #fff;
-  font-size: 1.05rem;
-  cursor: pointer;
-  border: none;
-  border-radius: 2rem;
+  height: 50px;
+  padding: 0 16px 0 42px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(52, 211, 153, 0.18);
+  border-radius: 14px;
+  color: #ecfdf5;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  outline: none;
   transition: all 0.3s ease;
-  box-shadow: 0 6px 25px rgba(0, 114, 255, 0.4);
 }
 
-form button:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 12px 35px rgba(0, 114, 255, 0.6);
+.amount-input:focus {
+  border-color: #34d399;
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.12);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-form button:active {
-  transform: scale(0.96);
+.amount-input::-webkit-outer-spin-button,
+.amount-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/* ── Dropdowns row ────────────────────────────────────────── */
+.dropdowns-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.dd-field {
+  flex: 1;
+}
+
+.select-wrap {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(52, 211, 153, 0.18);
+  border-radius: 14px;
+  padding: 9px 10px;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.select-wrap:focus-within {
+  border-color: #34d399;
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.12);
+}
+
+.select-wrap img {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.select-wrap select {
+  background: transparent;
+  border: none;
+  color: #ecfdf5;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+  appearance: none;
+}
+
+.select-wrap select option {
+  background: #0d2818;
+  color: #ecfdf5;
+}
+
+.chev {
+  font-size: 10px;
+  color: rgba(52, 211, 153, 0.4);
+  flex-shrink: 0;
+}
+
+/* ── Swap button ──────────────────────────────────────────── */
+.swap-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  color: #34d399;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  margin-bottom: 2px;
+}
+
+.swap-btn:hover {
+  background: rgba(52, 211, 153, 0.2);
+  box-shadow: 0 0 14px rgba(52, 211, 153, 0.3);
+}
+
+.swap-btn.spinning i {
+  animation: swapSpin 0.4s ease both;
+}
+
+/* ── Result box ───────────────────────────────────────────── */
+.result-box {
+  background: linear-gradient(
+    135deg,
+    rgba(52, 211, 153, 0.07),
+    rgba(245, 158, 11, 0.05)
+  );
+  border: 1px solid rgba(52, 211, 153, 0.18);
+  border-radius: 16px;
+  padding: 18px 16px;
+  text-align: center;
+  margin-bottom: 20px;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-hint {
+  font-size: 13px;
+  color: rgba(236, 253, 245, 0.35);
+  letter-spacing: 0.3px;
+}
+
+.result-amount {
+  font-size: 28px;
+  font-weight: 700;
+  color: #34d399;
+  line-height: 1;
+  margin-bottom: 6px;
+  animation: resultPop 0.4s ease both;
+}
+
+.result-rate {
+  font-size: 12px;
+  color: rgba(251, 191, 36, 0.7);
+  letter-spacing: 0.4px;
+}
+
+/* ── Convert button ───────────────────────────────────────── */
+.convert-btn {
+  width: 100%;
+  height: 50px;
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(135deg, #059669, #d97706);
+  color: #fff;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 24px rgba(5, 150, 105, 0.35);
+}
+
+.convert-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(5, 150, 105, 0.5);
+}
+
+.convert-btn:active {
+  transform: scale(0.97);
+}
+
+.convert-btn.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.btn-icon {
+  font-size: 16px;
+}
+.btn-icon.spinning {
+  animation: iconSpin 0.8s linear infinite;
 }
