@@ -11,37 +11,93 @@
     />
   </head>
   <body>
-    <div class="container">
-      <h2>Currency Converter</h2>
-      <form action="">
-        <div class="amount">
-          <label for="">Enter Amount</label>
-          <input type="text" value="100" />
+    <!-- Floating blobs -->
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
+    <div class="page">
+      <div class="card">
+        <!-- Header -->
+        <div class="card-header">
+          <div class="header-icon">
+            <i class="bi bi-currency-exchange"></i>
+          </div>
+          <h2 class="card-title">Currency Converter</h2>
+          <p class="card-sub">Real-time exchange rates</p>
         </div>
-        <div class="dropdown">
-          <div class="from">
-            <p>From</p>
-            <div class="select-container">
-              <img src="https://flagsapi.com/US/flat/64.png" alt="" />
-              <select name="from" id=""></select>
+
+        <!-- Amount -->
+        <div class="field-group">
+          <label class="field-label" for="amount">Amount</label>
+          <div class="input-wrap">
+            <i class="bi bi-cash-stack input-icon"></i>
+            <input
+              class="amount-input"
+              type="number"
+              id="amount"
+              value="100"
+              placeholder="Enter amount"
+            />
+          </div>
+        </div>
+
+        <!-- Dropdowns -->
+        <div class="dropdowns-row">
+          <div class="dd-field">
+            <label class="field-label">From</label>
+            <div class="select-wrap">
+              <img
+                id="fromFlag"
+                src="https://flagsapi.com/US/flat/64.png"
+                alt="flag"
+              />
+              <select id="from" name="from"></select>
+              <i class="bi bi-chevron-down chev"></i>
             </div>
           </div>
-          <i class="bi bi-arrow-left-right"></i>
-          <div class="to">
-            <p>To</p>
-            <div class="select-container">
-              <img src="https://flagsapi.com/PK/flat/64.png" alt="" />
-              <select name="to" id="">
-                <option value="USD">USD</option>
-              </select>
+
+          <button
+            class="swap-btn"
+            id="swapBtn"
+            onclick="swapCurrencies()"
+            title="Swap currencies"
+          >
+            <i class="bi bi-arrow-left-right"></i>
+          </button>
+
+          <div class="dd-field">
+            <label class="field-label">To</label>
+            <div class="select-wrap">
+              <img
+                id="toFlag"
+                src="https://flagsapi.com/PK/flat/64.png"
+                alt="flag"
+              />
+              <select id="to" name="to"></select>
+              <i class="bi bi-chevron-down chev"></i>
             </div>
           </div>
         </div>
-        <div class="msg">1USD = 280.05PKR</div>
-        <button>Get Exchange Rate</button>
-      </form>
+
+        <!-- Result -->
+        <div class="result-box" id="resultBox">
+          <p class="result-hint" id="resultHint">Press convert to see rate</p>
+          <div class="result-main" id="resultMain" style="display: none">
+            <div class="result-amount" id="resultAmount"></div>
+            <div class="result-rate" id="resultRate"></div>
+          </div>
+        </div>
+
+        <!-- Button -->
+        <button class="convert-btn" id="convertBtn" onclick="convert()">
+          <i class="bi bi-arrow-repeat btn-icon" id="btnIcon"></i>
+          <span id="btnText">Get Exchange Rate</span>
+        </button>
+      </div>
     </div>
-    <script src="./codes.js"></script>
-    <script src="./app.js"></script>
+
+    <script src="codes.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
